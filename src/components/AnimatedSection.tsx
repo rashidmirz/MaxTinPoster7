@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -9,15 +8,13 @@ interface AnimatedSectionProps {
 }
 
 export function AnimatedSection({ children, className = "", delay = 0 }: AnimatedSectionProps) {
-  const isMobile = useIsMobile();
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}
+      viewport={{ once: true, margin: "-100px" }}
       transition={{
-        duration: isMobile ? 1.2 : 0.7,
+        duration: 0.7,
         delay,
         ease: [0.22, 1, 0.36, 1]
       }}
@@ -39,7 +36,6 @@ export function AnimatedCard({ children, className = "", delay = 0 }: AnimatedSe
         delay,
         ease: [0.22, 1, 0.36, 1] 
       }}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
       className={className}
     >
       {children}
@@ -69,7 +65,6 @@ export function StaggerContainer({ children, className = "" }: { children: React
 }
 
 export function StaggerItem({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const isMobile = useIsMobile();
 
   return (
     <motion.div
@@ -79,7 +74,7 @@ export function StaggerItem({ children, className = "" }: { children: ReactNode;
           opacity: 1,
           y: 0,
           transition: {
-            duration: isMobile ? 0.8 : 0.5,
+            duration: 0.5,
             ease: [0.22, 1, 0.36, 1]
           }
         }
